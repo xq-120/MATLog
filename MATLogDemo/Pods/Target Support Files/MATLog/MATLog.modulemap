@@ -1,0 +1,6 @@
+framework module MATLog {
+  umbrella header "MATLog-umbrella.h"
+
+  export *
+  module * { export * }
+}

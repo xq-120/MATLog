@@ -13,11 +13,20 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/xq-120/MATLog.git", :tag => "#{spec.version}" }
 
-  spec.source_files  = "MATLog/Classes/**/*"
-
   spec.frameworks = "Foundation", "UIKit"
 
+  spec.swift_versions = ['5.5', '5.6', '5.7']
   spec.requires_arc = true
   spec.dependency "CocoaLumberjack", "~> 3.7.4"
+  
+  spec.default_subspecs = 'Core'
 
+  spec.subspec 'Core' do |ss|
+    ss.source_files = 'Sources/MATLog/**/*.{h,m}'
+  end
+
+  spec.subspec 'Swift' do |ss|
+    ss.dependency 'MATLog/Core'
+    ss.source_files = 'Sources/MATLogSwift/**/*.swift'
+  end
 end

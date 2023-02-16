@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8F0E81A5299DE69100CE199F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81A4299DE69100CE199F /* AppDelegate.swift */; };
+		8F0E81A7299DE69100CE199F /* FDEHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81A6299DE69100CE199F /* FDEHomeViewController.swift */; };
+		8F0E81A9299DE69100CE199F /* FDEDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81A8299DE69100CE199F /* FDEDetailViewController.swift */; };
+		8F0E81AB299DE69100CE199F /* FDEMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81AA299DE69100CE199F /* FDEMessageViewController.swift */; };
+		8F0E81AD299DE69100CE199F /* FDEMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81AC299DE69100CE199F /* FDEMineViewController.swift */; };
+		8F0E81AF299DE69100CE199F /* FDETabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81AE299DE69100CE199F /* FDETabBarController.swift */; };
+		8F0E81B1299DE69100CE199F /* FDEBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81B0299DE69100CE199F /* FDEBaseViewController.swift */; };
+		8F0E81B3299DE69100CE199F /* FDENavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81B2299DE69100CE199F /* FDENavigationController.swift */; };
+		8F0E81B5299DE69100CE199F /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81B4299DE69100CE199F /* DLog.swift */; };
+		8F0E81B7299DE69100CE199F /* FDEItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81B6299DE69100CE199F /* FDEItemModel.swift */; };
+		8F0E81B9299DE69200CE199F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F0E81B8299DE69200CE199F /* Assets.xcassets */; };
+		8F0E81BC299DE69200CE199F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0E81BA299DE69200CE199F /* LaunchScreen.storyboard */; };
+		8F0E81C6299E0AF400CE199F /* MATLogWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E81C5299E0AF400CE199F /* MATLogWrapper.m */; };
+		D00128B50F65CCC790D6D690 /* Pods_MATLogDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8D435C91809CD33281544D /* Pods_MATLogDemo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0C8D435C91809CD33281544D /* Pods_MATLogDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MATLogDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D6CB0A7D276F6D8C296DF2 /* Pods-MATLogDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MATLogDemo.debug.xcconfig"; path = "Target Support Files/Pods-MATLogDemo/Pods-MATLogDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		81F07098351FDDF1C43EC5B9 /* Pods-MATLogDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MATLogDemo.release.xcconfig"; path = "Target Support Files/Pods-MATLogDemo/Pods-MATLogDemo.release.xcconfig"; sourceTree = "<group>"; };
+		8F0E81A1299DE69100CE199F /* MATLogDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MATLogDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F0E81A4299DE69100CE199F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8F0E81A6299DE69100CE199F /* FDEHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDEHomeViewController.swift; sourceTree = "<group>"; };
+		8F0E81A8299DE69100CE199F /* FDEDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDEDetailViewController.swift; sourceTree = "<group>"; };
+		8F0E81AA299DE69100CE199F /* FDEMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDEMessageViewController.swift; sourceTree = "<group>"; };
+		8F0E81AC299DE69100CE199F /* FDEMineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDEMineViewController.swift; sourceTree = "<group>"; };
+		8F0E81AE299DE69100CE199F /* FDETabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDETabBarController.swift; sourceTree = "<group>"; };
+		8F0E81B0299DE69100CE199F /* FDEBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDEBaseViewController.swift; sourceTree = "<group>"; };
+		8F0E81B2299DE69100CE199F /* FDENavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDENavigationController.swift; sourceTree = "<group>"; };
+		8F0E81B4299DE69100CE199F /* DLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
+		8F0E81B6299DE69100CE199F /* FDEItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDEItemModel.swift; sourceTree = "<group>"; };
+		8F0E81B8299DE69200CE199F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F0E81BB299DE69200CE199F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8F0E81BD299DE69200CE199F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F0E81C3299E0AF400CE199F /* MATLogDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MATLogDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		8F0E81C4299E0AF400CE199F /* MATLogWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MATLogWrapper.h; sourceTree = "<group>"; };
+		8F0E81C5299E0AF400CE199F /* MATLogWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MATLogWrapper.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F0E819E299DE69100CE199F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00128B50F65CCC790D6D690 /* Pods_MATLogDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77960C788AE8476E0B03D276 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				18D6CB0A7D276F6D8C296DF2 /* Pods-MATLogDemo.debug.xcconfig */,
+				81F07098351FDDF1C43EC5B9 /* Pods-MATLogDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8F0E8198299DE69100CE199F = {
+			isa = PBXGroup;
+			children = (
+				8F0E81A3299DE69100CE199F /* MATLogDemo */,
+				8F0E81A2299DE69100CE199F /* Products */,
+				77960C788AE8476E0B03D276 /* Pods */,
+				F8615E57FC767B93D0A14F2B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8F0E81A2299DE69100CE199F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F0E81A1299DE69100CE199F /* MATLogDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F0E81A3299DE69100CE199F /* MATLogDemo */ = {
+			isa = PBXGroup;
+			children = (
+				8F0E81A4299DE69100CE199F /* AppDelegate.swift */,
+				8F0E81A6299DE69100CE199F /* FDEHomeViewController.swift */,
+				8F0E81A8299DE69100CE199F /* FDEDetailViewController.swift */,
+				8F0E81AA299DE69100CE199F /* FDEMessageViewController.swift */,
+				8F0E81AC299DE69100CE199F /* FDEMineViewController.swift */,
+				8F0E81AE299DE69100CE199F /* FDETabBarController.swift */,
+				8F0E81B0299DE69100CE199F /* FDEBaseViewController.swift */,
+				8F0E81B2299DE69100CE199F /* FDENavigationController.swift */,
+				8F0E81B4299DE69100CE199F /* DLog.swift */,
+				8F0E81B6299DE69100CE199F /* FDEItemModel.swift */,
+				8F0E81C4299E0AF400CE199F /* MATLogWrapper.h */,
+				8F0E81C5299E0AF400CE199F /* MATLogWrapper.m */,
+				8F0E81B8299DE69200CE199F /* Assets.xcassets */,
+				8F0E81BA299DE69200CE199F /* LaunchScreen.storyboard */,
+				8F0E81BD299DE69200CE199F /* Info.plist */,
+				8F0E81C3299E0AF400CE199F /* MATLogDemo-Bridging-Header.h */,
+			);
+			path = MATLogDemo;
+			sourceTree = "<group>";
+		};
+		F8615E57FC767B93D0A14F2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C8D435C91809CD33281544D /* Pods_MATLogDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F0E81A0299DE69100CE199F /* MATLogDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F0E81C0299DE69200CE199F /* Build configuration list for PBXNativeTarget "MATLogDemo" */;
+			buildPhases = (
+				2711C5C61D9BC00D5E35ABEF /* [CP] Check Pods Manifest.lock */,
+				8F0E819D299DE69100CE199F /* Sources */,
+				8F0E819E299DE69100CE199F /* Frameworks */,
+				8F0E819F299DE69100CE199F /* Resources */,
+				825A300BA27198E30E82FD2D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MATLogDemo;
+			productName = MATLogDemo;
+			productReference = 8F0E81A1299DE69100CE199F /* MATLogDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8F0E8199299DE69100CE199F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					8F0E81A0299DE69100CE199F = {
+						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
+					};
+				};
+			};
+			buildConfigurationList = 8F0E819C299DE69100CE199F /* Build configuration list for PBXProject "MATLogDemo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8F0E8198299DE69100CE199F;
+			productRefGroup = 8F0E81A2299DE69100CE199F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8F0E81A0299DE69100CE199F /* MATLogDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F0E819F299DE69100CE199F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F0E81B9299DE69200CE199F /* Assets.xcassets in Resources */,
+				8F0E81BC299DE69200CE199F /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2711C5C61D9BC00D5E35ABEF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MATLogDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		825A300BA27198E30E82FD2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MATLogDemo/Pods-MATLogDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MATLogDemo/Pods-MATLogDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MATLogDemo/Pods-MATLogDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F0E819D299DE69100CE199F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F0E81AB299DE69100CE199F /* FDEMessageViewController.swift in Sources */,
+				8F0E81A5299DE69100CE199F /* AppDelegate.swift in Sources */,
+				8F0E81AD299DE69100CE199F /* FDEMineViewController.swift in Sources */,
+				8F0E81B5299DE69100CE199F /* DLog.swift in Sources */,
+				8F0E81B3299DE69100CE199F /* FDENavigationController.swift in Sources */,
+				8F0E81AF299DE69100CE199F /* FDETabBarController.swift in Sources */,
+				8F0E81B7299DE69100CE199F /* FDEItemModel.swift in Sources */,
+				8F0E81B1299DE69100CE199F /* FDEBaseViewController.swift in Sources */,
+				8F0E81A7299DE69100CE199F /* FDEHomeViewController.swift in Sources */,
+				8F0E81C6299E0AF400CE199F /* MATLogWrapper.m in Sources */,
+				8F0E81A9299DE69100CE199F /* FDEDetailViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8F0E81BA299DE69200CE199F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F0E81BB299DE69200CE199F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8F0E81BE299DE69200CE199F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8F0E81BF299DE69200CE199F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8F0E81C1299DE69200CE199F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18D6CB0A7D276F6D8C296DF2 /* Pods-MATLogDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 23DWX64F7P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MATLogDemo/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = xq.MATLogDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MATLogDemo/MATLogDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8F0E81C2299DE69200CE199F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81F07098351FDDF1C43EC5B9 /* Pods-MATLogDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 23DWX64F7P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MATLogDemo/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = xq.MATLogDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MATLogDemo/MATLogDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F0E819C299DE69100CE199F /* Build configuration list for PBXProject "MATLogDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F0E81BE299DE69200CE199F /* Debug */,
+				8F0E81BF299DE69200CE199F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F0E81C0299DE69200CE199F /* Build configuration list for PBXNativeTarget "MATLogDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F0E81C1299DE69200CE199F /* Debug */,
+				8F0E81C2299DE69200CE199F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8F0E8199299DE69100CE199F /* Project object */;
+}

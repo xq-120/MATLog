@@ -1,0 +1,31 @@
+PODS:
+  - CocoaLumberjack (3.7.4):
+    - CocoaLumberjack/Core (= 3.7.4)
+  - CocoaLumberjack/Core (3.7.4)
+  - CocoaLumberjack/Swift (3.7.4):
+    - CocoaLumberjack/Core
+  - MATLog/Core (0.0.1):
+    - CocoaLumberjack (~> 3.7.4)
+  - MATLog/Swift (0.0.1):
+    - CocoaLumberjack (~> 3.7.4)
+    - MATLog/Core
+
+DEPENDENCIES:
+  - CocoaLumberjack/Swift
+  - MATLog/Swift (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - CocoaLumberjack
+
+EXTERNAL SOURCES:
+  MATLog:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  MATLog: 09fc2d52b65b7503380dfe88596d9345ddb70a5f
+
+PODFILE CHECKSUM: 27451c07458613a7349cf12f78161de808a24cff
+
+COCOAPODS: 1.11.3
