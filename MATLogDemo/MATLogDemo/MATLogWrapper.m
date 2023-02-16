@@ -6,20 +6,20 @@
 //
 
 #import "MATLogWrapper.h"
-#import <MATLog/MATLogger.h>
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
+static NSInteger ddLogLevel = DDLogLevelDebug;
 
 @implementation MATLogWrapper
 
 + (void)logError:(NSString *)message {
-    MATLogError(@"sdfds1");
-
-    MATLogDebug(@"sdfds2");
     
-    [MATLog setLogLevel:MATLogLevelInfo];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [DDLog addLogger:[DDOSLogger new]];
+    });
     
-    MATLogError(@"sdfds3");
-
-    MATLogDebug(@"sdfds4");
+    DDLogError(@"%@", message);
 }
 
 @end

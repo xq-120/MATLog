@@ -9,7 +9,6 @@
 #define MATLog_h
 
 #import <MATLog/MATLog.h>
-#import <MATLog/MATLog+Internal.h>
 #import <MATLog/MATLogMacros.h>
 
 #endif /* MATLog_h */

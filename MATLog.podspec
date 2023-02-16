@@ -23,6 +23,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Core' do |ss|
     ss.source_files = 'Sources/MATLog/**/*.{h,m}'
+    #ss.private_header_files = 'Sources/MATLog/MAT*Internal.{h}' #控制OC头文件访问权限的有private、project、public三种。默认public
   end
 
   spec.subspec 'Swift' do |ss|
