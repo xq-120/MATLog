@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import MATLog
+import CocoaLumberjack
 
 class FDEMessageViewController: FDEBaseViewController {
 
-    var btn: UIButton = {
+     lazy var btn: UIButton = {
         let btn = UIButton.init(type: .custom)
         btn.frame = CGRect.init(x: 0, y: 0, width: 100, height: 44)
         btn.setTitle("button", for: .normal)
@@ -33,6 +35,10 @@ class FDEMessageViewController: FDEBaseViewController {
 
     @objc func btnDidClicked(_ sender: UIButton) {
         DLog("btnDidClicked")
+        
+        MATLogWrapper.logError("试试看东方闪电")
+        
+//        DDLogDebug("CocoaLumberjack - swift")
     }
 
 

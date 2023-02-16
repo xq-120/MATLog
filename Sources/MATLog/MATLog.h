@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_OPTIONS(NSInteger, MATLogFlag) {
+typedef NS_ENUM(NSInteger, MATLogFlag) {
     MATLogFlagError,
     MATLogFlagWarning,
     MATLogFlagInfo,

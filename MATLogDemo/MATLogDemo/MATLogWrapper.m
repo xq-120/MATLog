@@ -11,7 +11,15 @@
 @implementation MATLogWrapper
 
 + (void)logError:(NSString *)message {
-    MATLogError(message);
+    MATLogError(@"sdfds1");
+
+    MATLogDebug(@"sdfds2");
+    
+    [MATLog setLogLevel:MATLogLevelInfo];
+    
+    MATLogError(@"sdfds3");
+
+    MATLogDebug(@"sdfds4");
 }
 
 @end

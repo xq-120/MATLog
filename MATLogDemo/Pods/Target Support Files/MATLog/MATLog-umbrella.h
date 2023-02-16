@@ -11,6 +11,7 @@
 #endif
 
 #import "MATFileFormatter.h"
+#import "MATLog+Internal.h"
 #import "MATLog.h"
 #import "MATLogFileManager.h"
 #import "MATLogger.h"

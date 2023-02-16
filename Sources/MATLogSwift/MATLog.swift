@@ -7,48 +7,49 @@
 
 @_exported import MATLog
 
-/**
- + (void)log:(BOOL)asynchronous
-    isUpload:(BOOL)isUpload
-       level:(MATLogLevel)level
-        flag:(MATLogFlag)flag
-  moduleType:(NSInteger)type
-     message:(NSString *)message
-        {
-     
- }
- */
+//private extension MATLogLevel {
+//    func toDDLogLevel() -> DDLogLevel {
+//        switch self {
+//        case .error:
+//            return .error
+//        case .warning:
+//            return .warning
+//        case .info:
+//            return .info
+//        case .debug:
+//            return .debug
+//        case .verbose:
+//            return .verbose
+//        case .all:
+//            return .all
+//        case .off:
+//            return .off
+//        @unknown default:
+//            return .verbose
+//        }
+//    }
+//}
+//
+//private extension MATLogFlag {
+//    func toDDLogFlag() -> DDLogFlag {
+//        switch self {
+//        case .error:
+//            return .error
+//        case .warning:
+//            return .warning
+//        case .info:
+//            return .info
+//        case .debug:
+//            return .debug
+//        case .verbose:
+//            return .verbose
+//        @unknown default:
+//            return .verbose
+//        }
+//    }
+//}
 
-private extension MATLogLevel {
-    func toDDLogLevel() -> DDLogLevel {
-        switch self {
-        case .error:
-            return .error
-        case .warning:
-            return .warning
-        case .info:
-            return .info
-        case .debug:
-            return .debug
-        case .verbose:
-            return .verbose
-        case .all:
-            return .all
-        case .off:
-            return .off
-        @unknown default:
-            return .debug
-        }
-    }
-}
-
-private extension MATLogFlag {
-    func toDDLogFlag() -> DDLogFlag {
-        return .verbose
-    }
-}
-
-//@inlinable
+@inlinable
 public func _MATLogLogMessage(_ message: @autoclosure () -> Any,
                    asynchronous: Bool,
                        isUpload: Bool,
@@ -61,8 +62,8 @@ public func _MATLogLogMessage(_ message: @autoclosure () -> Any,
     if (isUpload) {
         //TODO:上传服务器
     }
-    let ddLevel = level.toDDLogLevel()
-    let ddFlag = flag.toDDLogFlag()
+    let ddLevel = MATLog.toDDLogLevel(level)
+    let ddFlag = MATLog.toDDLogFlag(flag)
     if ((ddLevel.rawValue & ddFlag.rawValue) != 0) {
         // Tell the DDLogMessage constructor to copy the C strings that get passed to it.
         let logMessage = DDLogMessage(message: String(describing: message()),
@@ -78,3 +79,70 @@ public func _MATLogLogMessage(_ message: @autoclosure () -> Any,
         DDLog.sharedInstance.log(asynchronous: asynchronous, message: logMessage)
     }
 }
+
+@inlinable
+public func MATLogError(_ message: @autoclosure () -> Any,
+                        asynchronous: Bool = false,
+                            isUpload: Bool = false,
+                               level: MATLogLevel = MATLog.logLevel(),
+                                flag: MATLogFlag = .error,
+                          moduleType: Int = 0,
+                                file: StaticString = #file,
+                            function: StaticString = #function,
+                        line: UInt = #line) {
+    _MATLogLogMessage(message(), asynchronous: asynchronous, isUpload: isUpload, level: level, flag: flag, moduleType: moduleType, file: file, function: function, line: line)
+}
+
+@inlinable
+public func MATLogWarning(_ message: @autoclosure () -> Any,
+                        asynchronous: Bool = true,
+                            isUpload: Bool = false,
+                               level: MATLogLevel = MATLog.logLevel(),
+                                flag: MATLogFlag = .warning,
+                          moduleType: Int = 0,
+                                file: StaticString = #file,
+                            function: StaticString = #function,
+                        line: UInt = #line) {
+    _MATLogLogMessage(message(), asynchronous: asynchronous, isUpload: isUpload, level: level, flag: flag, moduleType: moduleType, file: file, function: function, line: line)
+}
+
+@inlinable
+public func MATLogInfo(_ message: @autoclosure () -> Any,
+                        asynchronous: Bool = true,
+                            isUpload: Bool = false,
+                               level: MATLogLevel = MATLog.logLevel(),
+                                flag: MATLogFlag = .info,
+                          moduleType: Int = 0,
+                                file: StaticString = #file,
+                            function: StaticString = #function,
+                        line: UInt = #line) {
+    _MATLogLogMessage(message(), asynchronous: asynchronous, isUpload: isUpload, level: level, flag: flag, moduleType: moduleType, file: file, function: function, line: line)
+}
+
+@inlinable
+public func MATLogDebug(_ message: @autoclosure () -> Any,
+                        asynchronous: Bool = true,
+                            isUpload: Bool = false,
+                               level: MATLogLevel = MATLog.logLevel(),
+                                flag: MATLogFlag = .debug,
+                          moduleType: Int = 0,
+                                file: StaticString = #file,
+                            function: StaticString = #function,
+                        line: UInt = #line) {
+    _MATLogLogMessage(message(), asynchronous: asynchronous, isUpload: isUpload, level: level, flag: flag, moduleType: moduleType, file: file, function: function, line: line)
+}
+
+@inlinable
+public func MATLogVerbose(_ message: @autoclosure () -> Any,
+                        asynchronous: Bool = true,
+                            isUpload: Bool = false,
+                               level: MATLogLevel = MATLog.logLevel(),
+                                flag: MATLogFlag = .verbose,
+                          moduleType: Int = 0,
+                                file: StaticString = #file,
+                            function: StaticString = #function,
+                        line: UInt = #line) {
+    _MATLogLogMessage(message(), asynchronous: asynchronous, isUpload: isUpload, level: level, flag: flag, moduleType: moduleType, file: file, function: function, line: line)
+}
+
+

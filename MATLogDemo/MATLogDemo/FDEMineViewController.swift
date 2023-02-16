@@ -15,10 +15,6 @@ class FDEMineViewController: FDEBaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupSubview()
-        
-//        MATLogWrapper.logError("试试看东方闪电")
-        
-        DDLogDebug("CocoaLumberjack - swift")
     }
 
     func setupSubview() {
