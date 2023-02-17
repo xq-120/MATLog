@@ -3,6 +3,6 @@ use_frameworks!
 
 target 'MATLogDemo' do
 
- pod 'MATLog', :path => '../'
+ pod 'MATLog/Swift', :path => '../'
  pod 'CocoaLumberjack/Swift'
 end

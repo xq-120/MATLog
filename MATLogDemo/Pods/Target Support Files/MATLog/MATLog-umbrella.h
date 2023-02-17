@@ -21,6 +21,7 @@
 #import "MATLogModel.h"
 #import "MATOSFormatter.h"
 #import "MATUploadManager.h"
+#import "StubObject.h"
 
 FOUNDATION_EXPORT double MATLogVersionNumber;
 FOUNDATION_EXPORT const unsigned char MATLogVersionString[];

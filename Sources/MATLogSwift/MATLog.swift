@@ -59,25 +59,27 @@ public func _MATLogLogMessage(_ message: @autoclosure () -> Any,
                            file: StaticString,
                        function: StaticString,
                            line: UInt) {
-//    if (isUpload) {
-//        //TODO:上传服务器
-//    }
-//    let ddLevel = MATLog.toDDLogLevel(level)
-//    let ddFlag = MATLog.toDDLogFlag(flag)
-//    if ((ddLevel.rawValue & ddFlag.rawValue) != 0) {
-//        // Tell the DDLogMessage constructor to copy the C strings that get passed to it.
-//        let logMessage = DDLogMessage(message: String(describing: message()),
-//                                      level: ddLevel,
-//                                      flag: ddFlag,
-//                                      context: moduleType,
-//                                      file: String(describing: file),
-//                                      function: String(describing: function),
-//                                      line: line,
-//                                      tag: nil,
-//                                      options: [.copyFile, .copyFunction],
-//                                      timestamp: nil)
-//        DDLog.sharedInstance.log(asynchronous: asynchronous, message: logMessage)
-//    }
+    if (isUpload) {
+        //TODO:上传服务器
+    }
+    let ddLevel = MATLog.toDDLogLevel(level)
+    let ddFlag = MATLog.toDDLogFlag(flag)
+    if ((ddLevel.rawValue & ddFlag.rawValue) != 0) {
+        // Tell the DDLogMessage constructor to copy the C strings that get passed to it.
+        let logMessage = DDLogMessage(message: String(describing: message()),
+                                      level: ddLevel,
+                                      flag: ddFlag,
+                                      context: moduleType,
+                                      file: String(describing: file),
+                                      function: String(describing: function),
+                                      line: line,
+                                      tag: nil,
+                                      options: [.copyFile, .copyFunction],
+                                      timestamp: nil)
+        DDLog.sharedInstance.log(asynchronous: asynchronous, message: logMessage)
+    }
+    
+    MATLog.log(<#T##asynchronous: Bool##Bool#>, isUpload: <#T##Bool#>, level: <#T##MATLogLevel#>, flag: <#T##MATLogFlag#>, moduleType: <#T##Int#>, file: <#T##UnsafePointer<CChar>!#>, function: <#T##UnsafePointer<CChar>?#>, line: <#T##UInt#>, logMessage: <#T##DDLogMessage!#>)
 }
 
 @inlinable

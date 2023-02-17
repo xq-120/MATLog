@@ -29,6 +29,6 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Swift' do |ss|
     ss.dependency 'MATLog/Core'
-    ss.source_files = 'Sources/MATLogSwift/**/*.swift'
+    ss.source_files = 'Sources/MATLogSwift/**/*.{swift,h,mm}'
   end
 end

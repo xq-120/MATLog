@@ -16,4 +16,14 @@
 
 + (MATLogModel *)convertToDBItemWithLogMessage:(DDLogMessage *)logMessage;
 
++ (void)log:(BOOL)asynchronous
+   isUpload:(BOOL)isUpload
+      level:(MATLogLevel)level
+       flag:(MATLogFlag)flag
+ moduleType:(NSInteger)type
+       file:(const char *)file
+   function:(nullable const char *)function
+       line:(NSUInteger)line
+ logMessage:(DDLogMessage *)logMessage;
+
 @end

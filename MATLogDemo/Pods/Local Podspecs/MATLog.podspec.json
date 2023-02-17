@@ -48,7 +48,7 @@
 
         ]
       },
-      "source_files": "Sources/MATLogSwift/**/*.swift"
+      "source_files": "Sources/MATLogSwift/**/*.{swift,h,mm}"
     }
   ],
   "swift_version": "5.7"

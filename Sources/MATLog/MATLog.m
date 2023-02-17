@@ -97,6 +97,28 @@ static MATLogLevel logLevel = MATLogLevelDebug;
        file:(const char *)file
    function:(nullable const char *)function
        line:(NSUInteger)line
+ logMessage:(DDLogMessage *)logMessage {
+    
+    NSAssert(logMessage != nil, @"logMessage不能为空");
+    
+    DDLogLevel ddLevel = [self toDDLogLevel:level];
+    DDLogFlag ddFlag = [self toDDLogFlag:flag];
+    if((ddLevel & ddFlag) != 0) {
+        [[DDLog sharedInstance] log:asynchronous message:logMessage];
+    }
+    if (isUpload) {
+        [self uploadLog:logMessage immediately:!asynchronous];
+    }
+}
+
++ (void)log:(BOOL)asynchronous
+   isUpload:(BOOL)isUpload
+      level:(MATLogLevel)level
+       flag:(MATLogFlag)flag
+ moduleType:(NSInteger)type
+       file:(const char *)file
+   function:(nullable const char *)function
+       line:(NSUInteger)line
      format:(NSString *)format
        args:(va_list)args {
     
@@ -105,6 +127,7 @@ static MATLogLevel logLevel = MATLogLevelDebug;
     DDLogLevel ddLevel = [self toDDLogLevel:level];
     DDLogFlag ddFlag = [self toDDLogFlag:flag];
     DDLogMessage *logMessage = nil;
+    
     if((ddLevel & ddFlag) != 0) {
         logMessage = [self logMessageWithlevel:ddLevel flag:ddFlag moduleType:type file:file function:function line:line format:format args:args];
         [[DDLog sharedInstance] log:asynchronous message:logMessage];
@@ -114,9 +137,13 @@ static MATLogLevel logLevel = MATLogLevelDebug;
         if (logMessage == nil) {
             logMessage = [self logMessageWithlevel:ddLevel flag:ddFlag moduleType:type file:file function:function line:line format:format args:args];
         }
-        MATLogModel *item = [self convertToDBItemWithLogMessage:logMessage];
-        [[MATLog shared].uploadManager asyncUpload:item immediately:!asynchronous];
+        [self uploadLog:logMessage immediately:!asynchronous];
     }
+}
+
++ (void)uploadLog:(DDLogMessage *)message immediately:(BOOL)immediately {
+    MATLogModel *item = [self convertToDBItemWithLogMessage:message];
+    [[MATLog shared].uploadManager asyncUpload:item immediately:immediately];
 }
 
 + (MATLogModel *)convertToDBItemWithLogMessage:(DDLogMessage *)logMessage {
