@@ -30,6 +30,10 @@ typedef NS_ENUM(NSUInteger, MATLogLevel) {
 @class MATLogModel;
 @protocol MATLogDelegate <NSObject>
 
+/// 上传日志到服务器
+/// - Parameters:
+///   - logs: 日志
+///   - completionBlock: 完成回调。上传完成后必须调用completionBlock。
 - (void)uploadLogs:(NSArray<MATLogModel *> *)logs completion:(void(^)(NSError *error))completionBlock;
 
 @end

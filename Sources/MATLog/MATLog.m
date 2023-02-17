@@ -12,14 +12,14 @@
 #import "MATLogFileManager.h"
 #import "MATLogDatabaseServer.h"
 #import "MATLogModel.h"
+#import "MATUploadManager.h"
 
 static MATLogLevel logLevel = MATLogLevelDebug;
 
 @interface MATLog ()
 
-@property (nonatomic, weak) id<MATLogDelegate> delegate;
-@property (nonatomic, strong) MATLogDatabaseServer *dbServer;
 @property (nonatomic, strong) MATOSFormatter *logFormatter;
+@property (nonatomic, strong) MATUploadManager *uploadManager;
 
 @end
 
@@ -44,7 +44,7 @@ static MATLogLevel logLevel = MATLogLevelDebug;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _dbServer = [[MATLogDatabaseServer alloc] init];
+        _uploadManager = [[MATUploadManager alloc] init];
         _logFormatter = [[MATOSFormatter alloc] init];
     }
     return self;
@@ -84,7 +84,7 @@ static MATLogLevel logLevel = MATLogLevelDebug;
 }
 
 + (void)setDelegate:(id<MATLogDelegate>)delegate {
-    [MATLog shared].delegate = delegate;
+    [MATLog shared].uploadManager.delegate = delegate;
 }
 
 #pragma mark- Log
@@ -115,7 +115,7 @@ static MATLogLevel logLevel = MATLogLevelDebug;
             logMessage = [self logMessageWithlevel:ddLevel flag:ddFlag moduleType:type file:file function:function line:line format:format args:args];
         }
         MATLogModel *item = [self convertToDBItemWithLogMessage:logMessage];
-        [[MATLog shared].dbServer insertItem:item];
+        [[MATLog shared].uploadManager asyncUpload:item immediately:!asynchronous];
     }
 }
 
