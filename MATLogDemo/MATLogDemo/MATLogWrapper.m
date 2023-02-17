@@ -7,6 +7,7 @@
 
 #import "MATLogWrapper.h"
 #import <CocoaLumberjack/CocoaLumberjack.h>
+//#import <MATLog/MATLogger.h>
 
 static NSInteger ddLogLevel = DDLogLevelDebug;
 
@@ -20,6 +21,8 @@ static NSInteger ddLogLevel = DDLogLevelDebug;
     });
     
     DDLogError(@"%@", message);
+    
+//    MATLogError(@"%@", message);
 }
 
 @end

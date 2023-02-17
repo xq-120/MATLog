@@ -30,13 +30,16 @@
   "dependencies": {
     "CocoaLumberjack": [
       "~> 3.7.4"
+    ],
+    "WCDB": [
+      "~> 1.1.0"
     ]
   },
   "default_subspecs": "Core",
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Sources/MATLog/**/*.{h,m}"
+      "source_files": "Sources/MATLog/**/*.{h,m,mm}"
     },
     {
       "name": "Swift",

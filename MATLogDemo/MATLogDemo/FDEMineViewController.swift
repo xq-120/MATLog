@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import MATLog
 import CocoaLumberjack
 
 class FDEMineViewController: FDEBaseViewController {

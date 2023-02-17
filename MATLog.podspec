@@ -14,15 +14,16 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/xq-120/MATLog.git", :tag => "#{spec.version}" }
 
   spec.frameworks = "Foundation", "UIKit"
-
+  
   spec.swift_versions = ['5.5', '5.6', '5.7']
   spec.requires_arc = true
   spec.dependency "CocoaLumberjack", "~> 3.7.4"
+  spec.dependency "WCDB", "~> 1.1.0"
   
   spec.default_subspecs = 'Core'
 
   spec.subspec 'Core' do |ss|
-    ss.source_files = 'Sources/MATLog/**/*.{h,m}'
+    ss.source_files = 'Sources/MATLog/**/*.{h,m,mm}'
     #ss.private_header_files = 'Sources/MATLog/MAT*Internal.{h}' #控制OC头文件访问权限的有private、project、public三种。默认public
   end
 

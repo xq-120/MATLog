@@ -6,11 +6,14 @@
 //
 
 #import "MATLog.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 @interface MATLog (Internal)
 
 + (DDLogLevel)toDDLogLevel:(MATLogLevel)level;
 
 + (DDLogFlag)toDDLogFlag:(MATLogFlag)flag;
+
++ (MATLogModel *)convertToDBItemWithLogMessage:(DDLogMessage *)logMessage;
 
 @end

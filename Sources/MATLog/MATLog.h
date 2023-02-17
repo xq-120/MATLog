@@ -26,13 +26,22 @@ typedef NS_ENUM(NSUInteger, MATLogLevel) {
     MATLogLevelVerbose,
     MATLogLevelAll,
 };
-        
+
+@class MATLogModel;
+@protocol MATLogDelegate <NSObject>
+
+- (void)uploadLogs:(NSArray<MATLogModel *> *)logs completion:(void(^)(NSError *error))completionBlock;
+
+@end
+
 
 @interface MATLog : NSObject
 
 + (void)setLogLevel:(MATLogLevel)level;
 
 + (MATLogLevel)logLevel;
+
++ (void)setDelegate:(id<MATLogDelegate>)delegate;
 
 + (void)logErrorWithFile:(const char *)file
                function:(nullable const char *)function

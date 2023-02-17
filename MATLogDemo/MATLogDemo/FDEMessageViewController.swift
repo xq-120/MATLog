@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MATLog
+//import MATLog
 import CocoaLumberjack
 
 class FDEMessageViewController: FDEBaseViewController {
@@ -36,8 +36,8 @@ class FDEMessageViewController: FDEBaseViewController {
     @objc func btnDidClicked(_ sender: UIButton) {
         DLog("btnDidClicked")
         
-//        MATLogWrapper.logError("DDLog默认打印格式")
-        MATLogDebug("MATLog默认打印格式")
+        MATLogWrapper.logError("DDLog默认打印格式")
+//        MATLogDebug("MATLog默认打印格式")
     }
 
 

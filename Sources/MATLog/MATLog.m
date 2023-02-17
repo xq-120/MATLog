@@ -10,9 +10,18 @@
 #import "MATOSFormatter.h"
 #import "MATFileFormatter.h"
 #import "MATLogFileManager.h"
-#import <stdatomic.h>
+#import "MATLogDatabaseServer.h"
+#import "MATLogModel.h"
 
 static MATLogLevel logLevel = MATLogLevelDebug;
+
+@interface MATLog ()
+
+@property (nonatomic, weak) id<MATLogDelegate> delegate;
+@property (nonatomic, strong) MATLogDatabaseServer *dbServer;
+@property (nonatomic, strong) MATOSFormatter *logFormatter;
+
+@end
 
 @implementation MATLog
 
@@ -21,6 +30,24 @@ static MATLogLevel logLevel = MATLogLevelDebug;
     dispatch_once(&onceToken, ^{
         [self setupLogger];
     });
+}
+
++ (instancetype)shared {
+    static id obj = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        obj = [[MATLog alloc] init];
+    });
+    return obj;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _dbServer = [[MATLogDatabaseServer alloc] init];
+        _logFormatter = [[MATOSFormatter alloc] init];
+    }
+    return self;
 }
 
 + (void)setupLogger {
@@ -56,6 +83,12 @@ static MATLogLevel logLevel = MATLogLevelDebug;
     return logLevel;
 }
 
++ (void)setDelegate:(id<MATLogDelegate>)delegate {
+    [MATLog shared].delegate = delegate;
+}
+
+#pragma mark- Log
+
 + (void)log:(BOOL)asynchronous
    isUpload:(BOOL)isUpload
       level:(MATLogLevel)level
@@ -67,14 +100,57 @@ static MATLogLevel logLevel = MATLogLevelDebug;
      format:(NSString *)format
        args:(va_list)args {
     
-    if (isUpload) {
-        //TODO:上传服务器
-    }
+    NSAssert(format != nil, @"format不能为空");
+
     DDLogLevel ddLevel = [self toDDLogLevel:level];
     DDLogFlag ddFlag = [self toDDLogFlag:flag];
+    DDLogMessage *logMessage = nil;
     if((ddLevel & ddFlag) != 0) {
-        [DDLog log:asynchronous level:ddLevel flag:ddFlag context:type file:file function:function line:line tag:nil format:format args:args];
+        logMessage = [self logMessageWithlevel:ddLevel flag:ddFlag moduleType:type file:file function:function line:line format:format args:args];
+        [[DDLog sharedInstance] log:asynchronous message:logMessage];
     }
+    
+    if (isUpload) {
+        if (logMessage == nil) {
+            logMessage = [self logMessageWithlevel:ddLevel flag:ddFlag moduleType:type file:file function:function line:line format:format args:args];
+        }
+        MATLogModel *item = [self convertToDBItemWithLogMessage:logMessage];
+        [[MATLog shared].dbServer insertItem:item];
+    }
+}
+
++ (MATLogModel *)convertToDBItemWithLogMessage:(DDLogMessage *)logMessage {
+    MATLogModel *item = [[MATLogModel alloc] init];
+    item.logTimestamp = [logMessage.timestamp timeIntervalSince1970] * 1000;
+    item.logContent = logMessage.message;
+    item.logDetail = [[MATLog shared].logFormatter formatLogMessage:logMessage];
+    return item;
+}
+
++ (DDLogMessage *)logMessageWithlevel:(DDLogLevel)level
+                                   flag:(DDLogFlag)flag
+                             moduleType:(NSInteger)type
+                                   file:(const char *)file
+                               function:(nullable const char *)function
+                                   line:(NSUInteger)line
+                                 format:(NSString *)format
+                                   args:(va_list)args {
+    NSAssert(format != nil, @"format不能为空");
+    
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+    
+    DDLogMessage *logMessage = [[DDLogMessage alloc] initWithMessage:message
+                                               level:level
+                                                flag:flag
+                                             context:type
+                                                file:[NSString stringWithFormat:@"%s", file]
+                                            function:[NSString stringWithFormat:@"%s", function]
+                                                line:line
+                                                 tag:nil
+                                             options:(DDLogMessageOptions)0
+                                           timestamp:nil];
+    
+    return logMessage;
 }
 
 + (void)logErrorWithFile:(const char *)file
