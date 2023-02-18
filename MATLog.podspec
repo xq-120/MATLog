@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   
   spec.name         = "MATLog"
-  spec.version      = "0.0.2"
+  spec.version      = "0.1.0"
   spec.summary      = "基于CocoaLumberjack的封装，方便使用，以及增加了一些功能。"
   spec.homepage     = "https://github.com/xq-120/MATLog"
 
