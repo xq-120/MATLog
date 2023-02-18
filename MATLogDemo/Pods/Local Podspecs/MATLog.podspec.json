@@ -1,6 +1,6 @@
 {
   "name": "MATLog",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "summary": "基于CocoaLumberjack的封装，方便使用，以及增加了一些功能。",
   "homepage": "https://github.com/xq-120/MATLog",
   "license": {
@@ -15,7 +15,7 @@
   },
   "source": {
     "git": "https://github.com/xq-120/MATLog.git",
-    "tag": "0.0.1"
+    "tag": "0.1.0"
   },
   "frameworks": [
     "Foundation",

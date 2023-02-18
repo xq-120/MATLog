@@ -2,7 +2,7 @@
 //  MATLogMacros.h
 //  Pods
 //
-//  Created by 薛权 on 2022/10/3.
+//  Created by xq on 2022/10/3.
 //
 
 #ifndef MATLogMacros_h

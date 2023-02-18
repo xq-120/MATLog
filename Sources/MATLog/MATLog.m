@@ -2,7 +2,7 @@
 //  MATLog.m
 //  MATLog
 //
-//  Created by 薛权 on 2022/10/2.
+//  Created by xq on 2022/10/2.
 //
 
 #import "MATLog.h"
