@@ -43,9 +43,8 @@
 - (BOOL)insertItem:(MATLogModel *)log
 {
     BOOL result = [_database insertObject:log into:kMATLogTable];
-    if (result) {
-        log.logID = log.lastInsertedRowID;
-    }
+    //lastInsertedRowID is only useful when inserting new data.
+    //一条数据插入后，模型的lastInsertedRowID的值才可用。其他时候获取是0,比如查询。
     return result;
 }
 

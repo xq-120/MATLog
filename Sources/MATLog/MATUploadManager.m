@@ -7,6 +7,7 @@
 
 #import "MATUploadManager.h"
 #import "MATLogDatabaseServer.h"
+#import "MATLogMacros.h"
 
 /**
  上报策略：
@@ -81,7 +82,7 @@
         return;
     }
     self.isUploading = YES;
-    
+
     __weak typeof(self) weakSelf = self;
     [self.delegate uploadLogs:items completion:^(NSError * _Nonnull error) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
