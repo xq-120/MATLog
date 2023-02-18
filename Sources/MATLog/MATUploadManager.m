@@ -19,10 +19,10 @@
 
 @property (nonatomic, strong) MATLogDatabaseServer *dbServer;
 @property (nonatomic, strong) dispatch_queue_t serailQueue;
-@property (nonatomic, strong) dispatch_semaphore_t semaphore;
 @property (nonatomic, assign) NSInteger uploadThreshold; //10条
 @property (nonatomic, assign) NSInteger uploadInterval; //10s
 @property (nonatomic, strong) NSTimer *reportTimer;
+@property (nonatomic, assign) BOOL isUploading;
 
 @end
 
@@ -37,7 +37,6 @@
     if (self) {
         _dbServer = [[MATLogDatabaseServer alloc] init];
         _serailQueue = dispatch_queue_create("com.matlog.upload", DISPATCH_QUEUE_SERIAL);
-        _semaphore = dispatch_semaphore_create(0);
         _uploadThreshold = 10;
         _uploadInterval = 10;
         [self setupTimer];
@@ -53,21 +52,35 @@
 - (void)asyncUpload:(MATLogModel *)item immediately:(BOOL)immediately {
     dispatch_async(self.serailQueue, ^{
         [self.dbServer insertItem:item];
+
         if (immediately) {
             [self uploadItems:@[item]];
             return;
         }
-        NSArray *items = [self.dbServer querryAllItems];
-        if (items.count < self.uploadThreshold) {
-            return;
-        }
-        [self uploadItems:items];
+        
+        [self uploadWithThreshold:self.uploadThreshold];
     });
 }
 
-// 同步任务
+// 确保在serailQueue中执行。
+- (void)uploadWithThreshold:(NSInteger)threshold {
+    if (self.isUploading) {
+        return;
+    }
+    
+    NSArray *items = [self.dbServer querryAllItems];
+    if (items.count == 0 || items.count < threshold) {
+        return;
+    }
+    [self uploadItems:items];
+}
+
+
 - (void)uploadItems:(NSArray<MATLogModel *> *)items {
-    NSLog(@"将要上报数据：arr.count:%ld", items.count);
+    if (self.isUploading) {
+        return;
+    }
+    self.isUploading = YES;
     
     __weak typeof(self) weakSelf = self;
     [self.delegate uploadLogs:items completion:^(NSError * _Nonnull error) {
@@ -75,17 +88,14 @@
         if (strongSelf == nil) {
             return;
         }
-        if (!error) {
-            [strongSelf.dbServer deleteItems:items];
-            NSArray *tmp = [strongSelf.dbServer querryAllItems];
-            NSLog(@"上传成功，删除已上报数据后数据库剩余：tmp.count:%ld,tmp：%@", tmp.count, tmp);
-        } else {
-            // 上传失败则不删除数据库数据
-        }
-        dispatch_semaphore_signal(strongSelf.semaphore);
+        
+        dispatch_async(strongSelf.serailQueue, ^{
+            if (!error) {
+                [strongSelf.dbServer deleteItems:items];
+            }
+            strongSelf.isUploading = NO;
+        });
     }];
-    
-    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
 }
 
 - (void)setupTimer {
@@ -95,6 +105,7 @@
         if (strongSelf == nil) {
             return;
         }
+        
         [strongSelf timerCountDown:timer];
     }];
     [[NSRunLoop currentRunLoop] addTimer:_reportTimer forMode:NSRunLoopCommonModes];
@@ -102,11 +113,7 @@
 
 - (void)timerCountDown:(NSTimer *)timer {
     dispatch_async(self.serailQueue, ^{
-        NSArray *items = [self.dbServer querryAllItems];
-        if (items.count == 0) {
-            return;
-        }
-        [self uploadItems:items];
+        [self uploadWithThreshold:0];
     });
 }
 
