@@ -39,7 +39,8 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Sources/MATLog/**/*.{h,m,mm}"
+      "source_files": "Sources/MATLog/**/*.{h,m,mm}",
+      "private_header_files": "Sources/MATLog/*WCTTableCoding.{h}"
     },
     {
       "name": "Swift",

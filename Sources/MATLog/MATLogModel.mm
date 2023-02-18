@@ -17,6 +17,10 @@ WCDB_SYNTHESIZE(MATLogModel, logTimestamp)
 WCDB_SYNTHESIZE(MATLogModel, logContent)
 WCDB_SYNTHESIZE(MATLogModel, logDetail)
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@:%p>,logID:%ld,logDetail:%@", self.class, self, _logID, _logDetail];
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {

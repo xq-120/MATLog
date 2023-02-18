@@ -18,7 +18,7 @@ static MATLogLevel logLevel = MATLogLevelDebug;
 
 @interface MATLog ()
 
-@property (nonatomic, strong) MATOSFormatter *logFormatter;
+@property (nonatomic, strong) MATFileFormatter *logFormatter;
 @property (nonatomic, strong) MATUploadManager *uploadManager;
 
 @end
@@ -45,7 +45,7 @@ static MATLogLevel logLevel = MATLogLevelDebug;
     self = [super init];
     if (self) {
         _uploadManager = [[MATUploadManager alloc] init];
-        _logFormatter = [[MATOSFormatter alloc] init];
+        _logFormatter = [[MATFileFormatter alloc] init];
     }
     return self;
 }
@@ -94,48 +94,22 @@ static MATLogLevel logLevel = MATLogLevelDebug;
       level:(MATLogLevel)level
        flag:(MATLogFlag)flag
  moduleType:(NSInteger)type
-       file:(const char *)file
-   function:(nullable const char *)function
+       file:(NSString *)file
+   function:(NSString *)function
        line:(NSUInteger)line
- logMessage:(DDLogMessage *)logMessage {
-    
-    NSAssert(logMessage != nil, @"logMessage不能为空");
+    message:(NSString *)message {
     
     DDLogLevel ddLevel = [self toDDLogLevel:level];
     DDLogFlag ddFlag = [self toDDLogFlag:flag];
-    if((ddLevel & ddFlag) != 0) {
-        [[DDLog sharedInstance] log:asynchronous message:logMessage];
-    }
-    if (isUpload) {
-        [self uploadLog:logMessage immediately:!asynchronous];
-    }
-}
-
-+ (void)log:(BOOL)asynchronous
-   isUpload:(BOOL)isUpload
-      level:(MATLogLevel)level
-       flag:(MATLogFlag)flag
- moduleType:(NSInteger)type
-       file:(const char *)file
-   function:(nullable const char *)function
-       line:(NSUInteger)line
-     format:(NSString *)format
-       args:(va_list)args {
     
-    NSAssert(format != nil, @"format不能为空");
-
-    DDLogLevel ddLevel = [self toDDLogLevel:level];
-    DDLogFlag ddFlag = [self toDDLogFlag:flag];
     DDLogMessage *logMessage = nil;
-    
     if((ddLevel & ddFlag) != 0) {
-        logMessage = [self logMessageWithlevel:ddLevel flag:ddFlag moduleType:type file:file function:function line:line format:format args:args];
+        logMessage = [[DDLogMessage alloc] initWithMessage:message level:ddLevel flag:ddFlag context:type file:file function:function line:line tag:nil options:(DDLogMessageOptions)0 timestamp:nil];
         [[DDLog sharedInstance] log:asynchronous message:logMessage];
     }
-    
     if (isUpload) {
         if (logMessage == nil) {
-            logMessage = [self logMessageWithlevel:ddLevel flag:ddFlag moduleType:type file:file function:function line:line format:format args:args];
+            logMessage = [[DDLogMessage alloc] initWithMessage:message level:ddLevel flag:ddFlag context:type file:file function:function line:line tag:nil options:(DDLogMessageOptions)0 timestamp:nil];
         }
         [self uploadLog:logMessage immediately:!asynchronous];
     }
@@ -154,30 +128,23 @@ static MATLogLevel logLevel = MATLogLevelDebug;
     return item;
 }
 
-+ (DDLogMessage *)logMessageWithlevel:(DDLogLevel)level
-                                   flag:(DDLogFlag)flag
-                             moduleType:(NSInteger)type
-                                   file:(const char *)file
-                               function:(nullable const char *)function
-                                   line:(NSUInteger)line
-                                 format:(NSString *)format
-                                   args:(va_list)args {
++ (void)log:(BOOL)asynchronous
+   isUpload:(BOOL)isUpload
+      level:(MATLogLevel)level
+       flag:(MATLogFlag)flag
+ moduleType:(NSInteger)type
+       file:(const char *)file
+   function:(nullable const char *)function
+       line:(NSUInteger)line
+     format:(NSString *)format
+       args:(va_list)args {
+    
     NSAssert(format != nil, @"format不能为空");
     
     NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
-    
-    DDLogMessage *logMessage = [[DDLogMessage alloc] initWithMessage:message
-                                               level:level
-                                                flag:flag
-                                             context:type
-                                                file:[NSString stringWithFormat:@"%s", file]
-                                            function:[NSString stringWithFormat:@"%s", function]
-                                                line:line
-                                                 tag:nil
-                                             options:(DDLogMessageOptions)0
-                                           timestamp:nil];
-    
-    return logMessage;
+    NSString *fileStr = [NSString stringWithFormat:@"%s", file];
+    NSString *funcStr = [NSString stringWithFormat:@"%s", function];
+    [self log:asynchronous isUpload:isUpload level:level flag:flag moduleType:type file:fileStr function:funcStr line:line message:message];
 }
 
 + (void)logErrorWithFile:(const char *)file

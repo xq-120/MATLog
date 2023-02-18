@@ -1,5 +1,5 @@
 //
-//  MATLogWrapper.h
+//  DDLogWrapper.h
 //  MATLogDemo
 //
 //  Created by xq on 2023/2/16.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MATLogWrapper : NSObject
+@interface DDLogWrapper : NSObject
 
 + (void)logError:(NSString *)message;
 

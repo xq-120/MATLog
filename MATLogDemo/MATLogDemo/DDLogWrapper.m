@@ -5,13 +5,12 @@
 //  Created by xq on 2023/2/16.
 //
 
-#import "MATLogWrapper.h"
+#import "DDLogWrapper.h"
 #import <CocoaLumberjack/CocoaLumberjack.h>
-//#import <MATLog/MATLogger.h>
 
 static NSInteger ddLogLevel = DDLogLevelDebug;
 
-@implementation MATLogWrapper
+@implementation DDLogWrapper
 
 + (void)logError:(NSString *)message {
     
@@ -21,8 +20,6 @@ static NSInteger ddLogLevel = DDLogLevelDebug;
     });
     
     DDLogError(@"%@", message);
-    
-//    MATLogError(@"%@", message);
 }
 
 @end

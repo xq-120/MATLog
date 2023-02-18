@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, MATLogLevel) {
 /// - Parameters:
 ///   - logs: 日志
 ///   - completionBlock: 完成回调。上传完成后必须调用completionBlock。
-- (void)uploadLogs:(NSArray<MATLogModel *> *)logs completion:(void(^)(NSError *error))completionBlock;
+- (void)uploadLogs:(NSArray<MATLogModel *> *)logs completion:(void(^)(NSError * _Nullable error))completionBlock;
 
 @end
 
@@ -121,6 +121,16 @@ typedef NS_ENUM(NSUInteger, MATLogLevel) {
    function:(nullable const char *)function
        line:(NSUInteger)line
      format:(NSString *)format, ... ;
+
++ (void)log:(BOOL)asynchronous
+   isUpload:(BOOL)isUpload
+      level:(MATLogLevel)level
+       flag:(MATLogFlag)flag
+ moduleType:(NSInteger)type
+       file:(NSString *)file
+   function:(NSString *)function
+       line:(NSUInteger)line
+    message:(NSString *)message;
 
 @end
 

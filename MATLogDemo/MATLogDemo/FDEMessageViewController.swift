@@ -6,11 +6,11 @@
 //
 
 import UIKit
-//import MATLog
+import MATLog
 import CocoaLumberjack
 
-class FDEMessageViewController: FDEBaseViewController {
-
+class FDEMessageViewController: FDEBaseViewController, MATLogDelegate {
+    
      lazy var btn: UIButton = {
         let btn = UIButton.init(type: .custom)
         btn.frame = CGRect.init(x: 0, y: 0, width: 100, height: 44)
@@ -25,6 +25,8 @@ class FDEMessageViewController: FDEBaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupSubview()
+        
+        MATLog.setDelegate(self)
     }
 
     func setupSubview() {
@@ -32,14 +34,28 @@ class FDEMessageViewController: FDEBaseViewController {
         view.addSubview(btn)
         btn.center = self.view.center
     }
+    
+    func uploadLogs(_ logs: [MATLogModel], completion completionBlock: @escaping (Error?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+            completionBlock(nil)
+        })
+    }
 
     @objc func btnDidClicked(_ sender: UIButton) {
         DLog("btnDidClicked")
         
-        MATLogWrapper.logError("DDLog默认打印格式")
-//        MATLogDebug("MATLog默认打印格式")
+        self.testMATLogUpload()
     }
 
+    private func testDDLogAndMATLog() {
+//        DDLogWrapper.logError("DDLog默认打印格式")
+        MATLogDebug("MATLog默认打印格式")
+    }
 
+    private func testMATLogUpload() {
+        for i in 0..<50 {
+            MATLogDebug("the world of the war--\(i)", asynchronous: true, isUpload: true, moduleType: 1)
+        }
+    }
 }
 

@@ -8,6 +8,13 @@
 #import "MATUploadManager.h"
 #import "MATLogDatabaseServer.h"
 
+/**
+ 上报策略：
+ 1.攒够10条则上报
+ 2.定时器每隔10s上报。
+ 3.进入前台马上上报。
+ 4.调用asyncUpload:immediately,immediately=YES马上上报。
+ */
 @interface MATUploadManager ()
 
 @property (nonatomic, strong) MATLogDatabaseServer *dbServer;
@@ -60,7 +67,7 @@
 
 // 同步任务
 - (void)uploadItems:(NSArray<MATLogModel *> *)items {
-    NSLog(@"将要上报数据：arr.count:%ld,arr：%@", items.count, items);
+    NSLog(@"将要上报数据：arr.count:%ld", items.count);
     
     __weak typeof(self) weakSelf = self;
     [self.delegate uploadLogs:items completion:^(NSError * _Nonnull error) {
@@ -107,10 +114,7 @@
 
 - (void)addNotification {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    //app进入前台
     [center addObserver:self selector:@selector(enterForegroundNotification) name:UIApplicationWillEnterForegroundNotification object:nil];
-    
-    //app进入后台
     [center addObserver:self selector:@selector(enterBackgroundNotification) name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
@@ -121,12 +125,10 @@
 }
 
 - (void)enterForegroundNotification {
-    // 定时器开启
     [_reportTimer setFireDate:[NSDate date]];
 }
 
 - (void)enterBackgroundNotification {
-    // 定时器暂停
     [_reportTimer setFireDate:[NSDate distantFuture]];
 }
 
