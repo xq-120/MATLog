@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   
   spec.name         = "MATLog"
-  spec.version      = "0.1.0"
+  spec.version      = "0.2.0"
   spec.summary      = "基于CocoaLumberjack的封装，方便使用，以及增加了一些功能。"
   spec.homepage     = "https://github.com/xq-120/MATLog"
 
@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
 
   spec.author       = { "xq" => "1204556447@qq.com" }
 
-  spec.platform     = :ios, "10.0"
+  spec.platform     = :ios, "11.0"
 
   spec.source       = { :git => "https://github.com/xq-120/MATLog.git", :tag => "#{spec.version}" }
 
@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
   spec.swift_versions = ['5.5', '5.6', '5.7']
   spec.requires_arc = true
   spec.dependency "CocoaLumberjack", "~> 3.7.4"
-  spec.dependency "WCDB", "~> 1.1.0"
+  spec.dependency "WCDB.objc", "~> 2.1.10"
   
   spec.default_subspecs = 'Core'
 

@@ -7,7 +7,7 @@
 
 #import "MATLogDatabaseServer.h"
 #import "MATLogModel+WCTTableCoding.h"
-#import <WCDB/WCDB.h>
+#import <WCDBObjc/WCDBObjc.h>
 
 #define kMATLogTable @"MATLogTable"
 #define kMATLogDBPath ([[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"DB/MATLog.db"])
@@ -32,46 +32,46 @@
 
 - (BOOL)creatDatabase
 {
-    BOOL result = YES;
     _database = [[WCTDatabase alloc] initWithPath:kMATLogDBPath];
-    if (![_database isTableExists:kMATLogTable]) {
-        result = [_database createTableAndIndexesOfName:kMATLogTable withClass:MATLogModel.class];
-    }
+    BOOL result = [_database createTable:kMATLogTable withClass:MATLogModel.class];
     return result;
 }
     
 - (BOOL)insertItem:(MATLogModel *)log
 {
-    BOOL result = [_database insertObject:log into:kMATLogTable];
+    BOOL result = [_database insertObject:log intoTable:kMATLogTable];
     //lastInsertedRowID is only useful when inserting new data.
     //一条数据插入后，模型的lastInsertedRowID的值才可用。其他时候获取是0,比如查询。
     return result;
 }
 
 - (void)deleteItems:(NSArray<MATLogModel *> *)logs {
-    WCTCondition condition;
-    BOOL isFirst = YES;
-    for (MATLogModel *model in logs) {
-        if (isFirst) {
-            isFirst = NO;
-            condition = (MATLogModel.logID == model.logID);
-        } else {
-            condition = condition || MATLogModel.logID == model.logID;
+    if (logs.count == 0) {
+        return;
+    }
+
+    // 获取主键数组
+    NSMutableArray *logIDs = [NSMutableArray arrayWithCapacity:logs.count];
+    for (MATLogModel *log in logs) {
+        if (log.logID > 0) {
+            [logIDs addObject:@(log.logID)];
         }
     }
-    BOOL success = [_database deleteObjectsFromTable:kMATLogTable where:condition];
+
+    BOOL success = [_database deleteFromTable:kMATLogTable where:MATLogModel.logID.in(logIDs)];
     if (!success) {
-        NSLog(@"删除失败");
+        NSError *error = _database.error;
+        NSLog(@"批量删除失败：%@", error.localizedDescription);
     }
 }
     
 - (NSArray<MATLogModel *> *)querryAllItems {
-    NSArray<MATLogModel *> *items = [_database getAllObjectsOfClass:MATLogModel.class fromTable:kMATLogTable];
+    NSArray<MATLogModel *> *items = [_database getObjectsOfClass:MATLogModel.class fromTable:kMATLogTable];
     return items;
 }
 
 - (void)clear {
-    [_database deleteAllObjectsFromTable:kMATLogTable];
+    [_database deleteFromTable:kMATLogTable];
 }
 
 @end

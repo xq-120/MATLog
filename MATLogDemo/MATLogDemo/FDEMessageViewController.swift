@@ -53,7 +53,7 @@ class FDEMessageViewController: FDEBaseViewController, MATLogDelegate {
     }
 
     private func testMATLogUpload() {
-        for i in 0..<50 {
+        for i in 0..<200 {
             MATLogDebug("the world of the war--\(i)", asynchronous: true, isUpload: true, moduleType: 1)
         }
     }

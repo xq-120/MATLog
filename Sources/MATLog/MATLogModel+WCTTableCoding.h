@@ -6,7 +6,7 @@
 //
 
 #import "MATLogModel.h"
-#import <WCDB/WCDB.h>
+#import <WCDBObjc/WCDBObjc.h>
 
 @interface MATLogModel (WCTTableCoding) <WCTTableCoding>
 
