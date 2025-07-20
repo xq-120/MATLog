@@ -17,8 +17,8 @@ Pod::Spec.new do |spec|
   
   spec.swift_versions = ['5.5', '5.6', '5.7']
   spec.requires_arc = true
-  spec.dependency "CocoaLumberjack", "~> 3.7.4"
-  spec.dependency "WCDB.objc", "~> 2.1.10"
+  spec.dependency "CocoaLumberjack", "~> 3.7.4", :modular_headers => true
+  spec.dependency "WCDB.objc", "~> 2.1.10", :modular_headers => true
   
   spec.default_subspecs = 'Core'
 
